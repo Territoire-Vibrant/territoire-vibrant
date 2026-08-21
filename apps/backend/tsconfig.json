@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ES2022", "DOM"],
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "types": ["vite/client"],
+    "jsx": "react-jsx"
+  },
+  "include": ["convex/**/*.ts", "src/**/*.ts", "scripts/**/*.ts"],
+  "exclude": ["convex/_generated"]
+}

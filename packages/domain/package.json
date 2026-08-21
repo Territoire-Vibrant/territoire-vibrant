@@ -1,0 +1,26 @@
+{
+  "name": "@tv/domain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./locale": "./src/locale.ts",
+    "./article": "./src/article.ts",
+    "./product": "./src/product.ts",
+    "./lead": "./src/lead.ts",
+    "./contact": "./src/contact.ts",
+    "./money": "./src/money.ts",
+    "./validators": "./src/validators.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "check": "biome check ."
+  },
+  "dependencies": {
+    "convex": "1.44.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

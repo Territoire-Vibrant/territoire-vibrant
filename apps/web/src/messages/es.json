@@ -1,0 +1,362 @@
+{
+  "territoire_vibrant": "Territoire Vibrant®",
+  "find_out_more": "Descubra más",
+  "view": "Ver",
+  "lets_talk": "Hablemos",
+  "home": "Inicio",
+  "who_we_are": "Quienes somos",
+  "mission": "Misión",
+  "projects": "Proyectos",
+  "featured_projects": "Proyectos Destacados",
+  "more_projects": "Más Proyectos",
+  "services": "Servicios",
+  "admin": "Admin",
+  "admin_nav_content": "Contenido",
+  "admin_nav_store": "Tienda",
+  "publications": "Publicaciones",
+  "contact": "Contacto",
+  "english": "Inglés",
+  "portuguese": "Portugués",
+  "spanish": "Español",
+  "french": "Francés",
+  "no_publications_yet": "No hay publicaciones aún.",
+  "no_products_yet": "Aún no hay productos disponibles.",
+  "admin_shop_nav": "Tienda",
+  "admin_shop_title": "Productos de la tienda",
+  "admin_shop_new_product": "Nuevo producto",
+  "admin_shop_edit": "Editar",
+  "admin_shop_edit_product": "Editar producto",
+  "admin_shop_no_products": "Aún no hay productos.",
+  "admin_shop_field_name": "Título",
+  "admin_shop_field_description": "Descripción",
+  "admin_shop_field_type": "Tipo",
+  "admin_shop_field_price": "Precio",
+  "admin_shop_field_image_url": "URL de la imagen",
+  "admin_shop_upload_image": "Subir imagen",
+  "admin_shop_upload_success": "Imagen subida.",
+  "admin_shop_upload_error": "No se pudo subir la imagen.",
+  "admin_shop_remove_image": "Quitar imagen",
+  "admin_shop_view": "Ver",
+  "admin_shop_view_product": "Producto",
+  "admin_shop_field_active": "Visible en la tienda",
+  "admin_shop_field_partner_store_url": "Enlace de tienda asociada (opcional) - p. ej. Amazon, Etsy, Shopify, eBay o tu propia tienda",
+  "admin_shop_type_physical": "Físico",
+  "admin_shop_type_digital": "Digital",
+  "admin_shop_save_success": "Producto guardado.",
+  "admin_shop_save_error": "No se pudo guardar.",
+  "admin_shop_back": "Volver a la lista",
+  "admin_shop_inactive": "Inactivo",
+  "admin_shop_no_description": "Sin descripción.",
+  "admin_shop_created_at": "Creado",
+  "admin_shop_updated_at": "Actualizado",
+  "search": "Buscar",
+  "newest": "Más recientes",
+  "oldest": "Más antiguas",
+  "all_statuses": "Todos los estados",
+  "apply": "Aplicar",
+  "create": "Crear",
+  "cancel": "Cancelar",
+  "save": "Guardar",
+  "publish": "Publicar",
+  "archive": "Archivar",
+  "status": "Estado",
+  "created": "Creado",
+  "our_network": "Nuestra Red",
+  "know_our_architecture": "Conozca Nuestra Arquitectura",
+  "publications_search_placeholder": "Buscar publicaciones",
+  "founder": "Fundador",
+  "architect_of_Territories": "Arquitecto de Territorios",
+  "portfolio": "Portafolio",
+  "partners": "Socios",
+  "magazine": "Revista",
+  "method": "Método",
+  "content": "Contenido",
+  "content_page_title": "Contenido",
+  "content_page_subtitle": "Elige una categoría para explorar",
+  "Content": {
+    "title": "Contenido",
+    "subtitle": "Elige una categoría para explorar.",
+    "categories": {
+      "publications": "Publicaciones",
+      "insights": "Estudios de caso"
+    }
+  },
+  "CaseStudies": {
+    "download": "Descargar PDF",
+    "file_type": "PDF",
+    "items": {
+      "santa_maria": {
+        "title": "Diagnóstico socioterritorial de Santa Maria (Aracaju, Brasil)",
+        "description": "Análisis territorial basado en tres años de inmersión directa sobre el terreno en el barrio de Santa Maria (Aracaju, Brasil).\n\nEste informe transforma dinámicas sociales complejas en un sistema estructurado de indicadores (escala de 0 a 1), permitiendo una lectura integrada del territorio y un apoyo concreto a la toma de decisiones estratégicas.\n\nMás allá de un simple diagnóstico, revela las tensiones estructurales, los potenciales latentes y las palancas reales de transformación territorial.",
+        "cover_alt": "Portada del estudio de caso Santa Maria"
+      }
+    }
+  },
+  "shop_page_title": "Tienda",
+  "shop_page_subtitle": "Productos exclusivos de Território Vibrante",
+  "shop_product_back": "Volver a la tienda",
+  "shop_order_by_email": "Pedir por correo",
+  "add_to_cart": "Añadir al carrito",
+  "shop_buy_at_partner": "Comprar en tienda asociada",
+  "product_physical": "Físico",
+  "product_digital": "Digital",
+  "contact_us": "Pedir",
+  "Publications": {
+    "published_on": "Publicado el {date}",
+    "read_more": "Leer artículo",
+    "back": "Volver a publicaciones",
+    "fallback_notice": "Mostrando la versión en {language}."
+  },
+  "Shop": {
+    "title": "Tienda"
+  },
+  "publish_status": {
+    "DRAFT": "Borrador",
+    "PUBLISHED": "Publicado",
+    "ARCHIVED": "Archivado"
+  },
+  "Home": {
+    "hero": {
+      "subtitle": "CONECTAR · ACTIVAR · TRANSFORMAR",
+      "title": "Inteligencia Territorial <v>Viva</v>",
+      "paragraph_1": "Conectamos personas, organizaciones y territorios para activar ecosistemas más colaborativos, regenerativos y humanos.",
+      "paragraph_2": "Transformamos el capital simbólico local en inteligencia colectiva, pertenencia e impacto territorial duradero.",
+      "cta_approach": "Conozca nuestro enfoque",
+      "cta_method": "Ver el método",
+      "box_tourism": {
+        "title": "Turismo de base comunitaria",
+        "subtext": "Experiencias que fortalecen a las comunidades locales, generan ingresos y valoran la cultura del territorio."
+      },
+      "box_economy": {
+        "title": "Economía creativa",
+        "subtext": "Iniciativas que transforman el territorio en un valor económico sostenible para las comunidades y culturas locales."
+      },
+      "community_image_alt": "Territorios acogedores, comunidades que prosperan.",
+      "landscape_image_alt": "Naturaleza, cultura y personas en armonía."
+    },
+    "stats": {
+      "communities": "+150",
+      "communities_label": "comunidades movilizadas",
+      "territories": "+40",
+      "territories_label": "territorios conectados",
+      "partnerships": "+80",
+      "partnerships_label": "alianzas y colaboraciones",
+      "impact": "Impacto",
+      "impact_label": "social, cultural y ambiental positivo"
+    },
+    "quote": "Los territorios vibrantes no ocurren por casualidad. Se construyen juntos.",
+    "developed_between": "Enfoque desarrollado entre Brasil y Quebec en torno a la innovación territorial y la inteligencia colaborativa.",
+    "intro": {
+      "p": "Actuamos con creatividad, inteligencia territorial y gestión colaborativa para transformar realidades en proyectos sostenibles, conectando Brasil, Canadá y el mundo.",
+      "cta_label": "Descubra qué es un territorio vibrante",
+      "image_alt": "Paisaje que representa un territorio vibrante"
+    },
+    "projects": {
+      "eyebrow": "Nuestros proyectos",
+      "heading": "Proyectos que activan territorios",
+      "heading_highlight": "y generan futuro",
+      "description": "Iniciativas propias y colaborativas que conectan personas, conocimientos y recursos para transformar realidades locales con inteligencia, creatividad y propósito.",
+      "partnership_cta": "Proponer una alianza",
+      "collective_title": "Los territorios vibrantes se construyen juntos.",
+      "collective_description": "Creemos en la fuerza de lo colectivo para construir futuros más justos, creativos y sostenibles.",
+      "project_1": {
+        "title": "Red colaborativa",
+        "description": "El proyecto Red Colaborativa Territoire Vibrant es el núcleo pulsante de todo nuestro ecosistema, representa un organismo vivo de creación, confianza y corresponsabilidad."
+      },
+      "project_2": {
+        "title": "Capital Reconocido",
+        "description": "El proyecto Capital Reconocido transforma el talento inmigrante invisible en valor reconocido, mediante mapeo de campo, base comunitaria propia y conexión estructurada con empresas e instituciones a través de infraestructura digital asociada."
+      },
+      "project_3": {
+        "title": "Voces de los vivos",
+        "description": "Vozes viventes es un proyecto artístico-pedagógico de cocreación artística con jóvenes, realizado en colaboración con escuelas públicas y técnicas."
+      }
+    },
+    "services": {
+      "title": "Nuestros Servicios",
+      "living_territories": "Territorios que respiran",
+      "territorial_solutions": "Soluciones Territoriales",
+      "service_1": {
+        "title": "RSE Territorial (APL Vibrante)",
+        "description": "Aplicamos nuestra arquitectura propietaria para fortalecer la pertenencia, regenerar vínculos y activar ecosistemas en empresas, municipios y organizaciones."
+      },
+      "service_2": {
+        "title": "Diagnóstico Vibrante Territorial",
+        "description": "Lectura sensible y sistémica de la vitalidad territorial, basada en relaciones, cultura, identidad y dinámicas organizacionales."
+      },
+      "service_3": {
+        "title": "Estrategias de Pertenencia y Vitalidad",
+        "description": "Planes creados para ampliar la cohesión social, el compromiso interno, la participación comunitaria y la cultura de convivencia."
+      },
+      "service_4": {
+        "title": "Proyectos Regenerativos e Innovación Social",
+        "description": "Iniciativas que unen territorio, creatividad, impacto social y procesos regenerativos en diferentes contextos."
+      },
+      "service_5": {
+        "title": "Gobernanza Territorial Participativa",
+        "description": "Modelos colaborativos que acercan actores, fortalecen decisiones colectivas y construyen ecosistemas de responsabilidad compartida."
+      },
+      "service_6": {
+        "title": "Cultura, Memoria y Economía Creativa",
+        "description": "Proyectos que activan identidad, narrativas locales, expresiones culturales y cadenas creativas como motores de desarrollo."
+      },
+      "service_7": {
+        "title": "Formación y Acompañamiento (para equipos)",
+        "description": "Programas formativos para líderes, equipos y colectivos que desean integrar visión territorial y prácticas vivas de gobernanza."
+      },
+      "service_8": {
+        "title": "Consultoría Estratégica Territorial",
+        "description": "Apoyo técnico para empresas, instituciones y municipios que buscan alinear visión, estrategia e impacto territorial de forma integrada."
+      }
+    },
+    "banner_sentence_1": "Construimos innovación social desde el territorio vivo",
+    "banner_sentence_2": "Toda transformación social comienza en el territorio que nos conforma"
+  },
+  "WhoWeAre": {
+    "intro": {
+      "p1": "Territoire Vibrant desarrolla soluciones concretas a partir de la lectura territorial, identificando y analizando las dinámicas locales, incluidos los fenómenos invisibles que influyen en el uso del espacio. Este enfoque permite elaborar un diagnóstico más preciso y orientar intervenciones simples, rápidas y adaptadas a la cultura, la vocación y las características ambientales de cada territorio.",
+      "p2": "El trabajo se basa en la observación, la escucha y la comprensión de los usos reales, en colaboración con actores locales, valorizando los conocimientos de comunidades autóctonas e inmigrantes. Este enfoque se aplica en contextos urbanos, rurales y en áreas naturales y forestales, siempre con foco en la integración entre actividad humana, medio ambiente e identidad local.",
+      "p3": "La empresa actúa en la organización de flujos, la valorización de la identidad y de la economía local y la mejora de la experiencia de los usuarios en contextos complejos, como áreas en transformación, zonas de obras o territorios en adaptación ecológica.",
+      "p4": "Cada proyecto parte de la realidad del territorio y busca resultados medibles, facilitando los desplazamientos, fortaleciendo el atractivo local, apoyando la actividad económica y contribuyendo al desarrollo del turismo de forma integrada al territorio."
+    },
+    "network": {
+      "chip": "La Red Colaborativa Território Vibrante",
+      "p1": "La Red Colaborativa es el proyecto central de Território Vibrante. En ella, cada miembro aporta sus competencias y recursos en un entorno de inteligencia colectiva, con acceso a una plataforma digital exclusiva que garantiza integración, agilidad y confianza.",
+      "p2": "Más que diálogo, la red es acción conjunta - fundamentada en disciplina, compromiso y lealtad. Combina investigación y desarrollo, a partir de la producción de artículos, libros y la elaboración e implementación de proyectos transformadores que unen innovación social, impacto cultural y turismo regenerativo."
+    },
+    "team": {
+      "title": "Nuestro equipo",
+      "marco": {
+        "name": "Marco Marques",
+        "role": "Fundador",
+        "bio": "Turismólogo, especialista en gestión de Arreglos Productivos Locales."
+      },
+      "pedro": {
+        "name": "Pedro Lucena",
+        "role": "Director de Desarrollo",
+        "bio": "Programador Full-Stack, especialista en desarrollo web y móvil."
+      },
+      "lilliam": {
+        "name": "Lilliam Mesquita",
+        "role": "Cofundadora",
+        "bio": "Descripción en breve."
+      },
+      "erica": {
+        "name": "Érica Gomes",
+        "role": "Coordinadora en psicopedagogía social",
+        "bio": ""
+      },
+      "angela": {
+        "name": "Ângela González",
+        "role": "Socióloga y doctora en Ciencias de la Salud Pública",
+        "bio": ""
+      }
+    },
+    "manifesto": {
+      "p1": "Somos una red viva de especialistas, emprendedores e investigadores conectados por un propósito. Cada miembro es un eslabón que hace vibrar el territorio, aportando su cultura, experiencia, técnica y creatividad para generar transformación.",
+      "p2": "Creemos en la fuerza del trabajo en red, en la inteligencia colectiva y en la confianza como base de toda asociación. La red es más que un espacio: es una fuerza viva de creación y pertenencia."
+    },
+    "highlight": "Lectura del territorio + creatividad + gestión colaborativa = impacto real."
+  },
+  "Mission": {
+    "intro": {
+      "p1": "Nuestro método se basa en una reinterpretación evolutiva de los Arreglos Productivos Locales (APL), combinada con la gestión del Turismo de Base Comunitaria (TBC), donde el desarrollo se entiende como un proceso continuo, cocreado, participativo y simbólico, construido por muchas manos y fundamentado en el sentido de pertenencia, la cooperación y la inteligencia colectiva.",
+      "p2": "Território Vibrante transforma demandas específicas en proyectos a medida, combinando inteligencia territorial, economía creativa y una red colaborativa. Cada iniciativa nace de un diagnóstico real y evoluciona a partir de la escucha activa de las comunidades, la lectura sensible de los contextos y la articulación entre actores públicos, privados y sociales."
+    },
+    "essence": {
+      "title": "Nuestra Esencia (Misión, Visión y Valores)",
+      "mission": {
+        "title": "Misión",
+        "p": "Conectar profesionales, instituciones y comunidades en un ecosistema colaborativo capaz de desarrollar proyectos que fortalezcan territorios, regeneren vínculos y valoren a inmigrantes y pueblos originarios, generando impacto social, cultural, económico y ambiental."
+      },
+      "vision": {
+        "title": "Visión",
+        "p": "Ser una referencia internacional en innovación social y desarrollo regenerativo, conectando Brasil, Québec y el mundo en proyectos que transformen el territorio en una fuente de pertenencia, prosperidad y equilibrio."
+      },
+      "values": {
+        "title": "Valores",
+        "item1": "Excelencia y Responsabilidad - hacer bien las cosas, con propósito y coherencia.",
+        "item2": "Lealtad y Confianza - relaciones humanas sólidas como base de toda acción.",
+        "item3": "Colaboración e Inteligencia Colectiva - el poder de hacer juntos.",
+        "item4": "Innovación y Resiliencia - transformar desafíos en soluciones creativas.",
+        "item5": "Corresponsabilidad Comunitaria - todos como protagonistas del impacto colectivo.",
+        "item6": "Centralidad Cultural - respeto y valorización de inmigrantes y pueblos originarios."
+      }
+    },
+    "quote": "El territorio no es un espacio para ser explotado. Es un ser que debe ser escuchado."
+  },
+  "Admin": {
+    "enter_title": "Ingrese título",
+    "enter_content": "Ingrese contenido",
+    "locale_saved": "Artículo en {language_lower} guardado",
+    "preview_empty": "Escribe algo en el editor para ver la vista previa aquí."
+  },
+  "Search": {
+    "title": "Búsqueda",
+    "results_for": "Resultados para \"{query}\"",
+    "results_count": "{count, plural, =1 {# resultado} other {# resultados}}",
+    "enter_query": "Ingrese un término de búsqueda para encontrar publicaciones.",
+    "no_results": "No se encontraron resultados. Intente con otro término de búsqueda.",
+    "browse_publications": "Ver todas las publicaciones"
+  },
+  "Contact": {
+    "title": "Contáctenos",
+    "subtitle": "¿Tiene una idea, proyecto o asociación en mente? Nos encantaría saber de usted.",
+    "phone": "Teléfono",
+    "email": "Email",
+    "form_title": "Envíe su mensaje",
+    "subject": "Asunto",
+    "select_subject": "Seleccione un asunto",
+    "subjects": {
+      "partnership": "Proponer asociación",
+      "quote": "Solicitud de presupuesto",
+      "invitation": "Invitaciones",
+      "other": "Otros"
+    },
+    "name": "Su nombre",
+    "name_placeholder": "Ingrese su nombre completo",
+    "your_email": "Su email",
+    "email_placeholder": "Ingrese su email",
+    "message": "Mensaje",
+    "message_placeholder": "Escriba su mensaje aquí...",
+    "send": "Enviar mensaje",
+    "success_title": "¡Mensaje enviado!",
+    "success": "Gracias por contactarnos. Le responderemos pronto.",
+    "error": "Ocurrió un error al enviar su mensaje. Por favor, inténtelo de nuevo."
+  },
+  "Ebook": {
+    "page_title": "E-Book Gratuito",
+    "hero_headline": "Construye Territorio Vibrante",
+    "hero_subtitle": "Descarga nuestra guía gratuita y descubre la metodología detrás de territorios sostenibles, colaborativos y vivos.",
+    "cover_alt": "Portada del e-book",
+    "form_title": "Obtén tu copia gratuita",
+    "name": "Tu nombre",
+    "name_placeholder": "Ingresa tu nombre completo",
+    "email": "Tu email",
+    "email_placeholder": "Ingresa tu email",
+    "phone": "Tu teléfono",
+    "phone_placeholder": "+1 514 000-0000",
+    "submit": "Enviarme el e-book",
+    "success_title": "¡Tu e-book está listo!",
+    "success_subtitle": "Gracias por tu interés. Haz clic en el botón de abajo para descargar.",
+    "delivery_warning_title": "Recibimos tu solicitud",
+    "delivery_warning_subtitle": "No pudimos enviar el e-book a tu correo en este momento. Puedes descargarlo directamente abajo.",
+    "download": "Descargar e-book",
+    "error": "Ocurrió un error. Por favor, inténtalo de nuevo.",
+    "shop_button": "Descargar gratis",
+    "shop_badge": "Gratis",
+    "shop_title": "E-Book: Territorio Vibrante",
+    "shop_description": "Una guía gratuita para construir territorios sostenibles, colaborativos y vivos.",
+    "dialog_title": "Obtén tu e-book gratuito",
+    "dialog_description": "Completa tus datos a continuación y te enviaremos el e-book a tu correo.",
+    "email_sent_hint": "El e-book ha sido enviado a tu correo electrónico."
+  },
+  "Footer": {
+    "partners_heading": "Socios e iniciativas que caminan con nosotros",
+    "quick_links": "Enlaces Rápidos",
+    "recent_articles": "Artículos Recientes",
+    "all_rights_reserved": "Todos los derechos reservados.",
+    "privacy_policy": "Política de Privacidad",
+    "terms_of_use": "Términos de Uso"
+  }
+}

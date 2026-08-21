@@ -1,0 +1,21 @@
+{
+  "name": "@tv/backend-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/api.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "check": "biome check ."
+  },
+  "dependencies": {
+    "@tv/backend": "*",
+    "convex": "1.44.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "5.9.3"
+  }
+}
