@@ -33,7 +33,47 @@
 | G | **Lead capture e contact viram Convex actions** | O lead é escrita de banco e o mobile vai precisar dele. O contact vai junto porque o tRPC que o hospedava está sendo removido. | — |
 | H | **`isAdmin` na linha do usuário** é a fonte de verdade | Igual ao rawanimalapp: `requireAdmin` lê server-side, nunca confia em claim vinda do cliente. O claim do Clerk é usado só para o gate de rota no `proxy.ts`. | — |
 
-**Bloqueador aberto:** a moeda dos produtos. Hoje `price` é `Decimal` sem moeda; o domínio é `.ca`. O plano assume **CAD**. Se for outra, altere `DEFAULT_CURRENCY` na Task 2.3 antes de rodar a migração.
+**Bloqueador aberto:** a moeda dos produtos. Hoje `price` é `Decimal` sem moeda; o domínio é `.ca`. O plano assume **CAD** — **confirmado pelo Pedro em 21/08**.
+
+---
+
+## Clerk: duas instâncias, um issuer que importa
+
+Verificado em 21/08 contra `https://clerk.territoirevibrant.ca/.well-known/openid-configuration` (HTTP 200):
+
+| Campo | Valor |
+|---|---|
+| `issuer` | `https://clerk.territoirevibrant.ca` (sem barra final) |
+| `jwks_uri` | `.../.well-known/jwks.json` — 1 chave ativa, `kid: ins_35er7Rk5qNzpdZjo` |
+| `claims_supported` | inclui `email`, `name`, `picture`, `aud` — o claim `email` **já está disponível** |
+
+**O `.env` do repo atual aponta para outra instância.** A `pk_test_`/`sk_test_` decodifica para
+`hardy-hamster-60.clerk.accounts.dev`, que tem **1 usuário no total**. Cruzando os 4 usuários do
+Postgres contra a API dessa instância:
+
+| Clerk user ID | E-mail | Existe no dev? |
+|---|---|---|
+| `user_35CfQ…w8Di7` | pedrocontact22@gmail.com | ✅ 200 |
+| `user_35frf…rH2mn` | **macneves@territoirevibrant.ca** (cliente) | ❌ 404 |
+| `user_35ev9…FUx7M` | (sem email) | ❌ 404 |
+| `user_35gFg…teSq` | pedrospaice@gmail.com | ❌ 404 |
+
+Ou seja: **os usuários reais vivem na instância de produção**, incluindo a conta do cliente.
+
+### A regra que não pode ser violada
+
+O script de migração deriva `tokenIdentifier` como `${issuer}|${clerkUserId}`. Esse valor precisa ser
+**sempre o issuer de produção** (`https://clerk.territoirevibrant.ca`), inclusive no ensaio contra o
+deployment de dev. Importar com o issuer de dev deixa os 4 usuários órfãos: ninguém casa no login e o
+`macneves` perde o acesso admin no cutover — falha que só aparece quando o cliente tenta entrar.
+
+- `CLERK_JWT_ISSUER_DOMAIN` **no Convex** varia por ambiente (é o que valida o token de quem está logado).
+- `CLERK_JWT_ISSUER_DOMAIN` **no script de migração** é constante e igual ao de produção.
+
+São dois usos da mesma variável com significados diferentes. Não unifique.
+
+**Decisão do Pedro (21/08):** setar agora apenas o issuer de produção; o mapeamento do deployment de
+dev fica para a Fase 5.
 
 ---
 
@@ -841,37 +881,37 @@ const ErrorFields = {
   details: Schema.optional(Schema.Unknown),
 }
 
-export class AuthenticationRequired extends Schema.TaggedErrorClass<AuthenticationRequired>()(
+export class AuthenticationRequired extends Schema.TaggedError<AuthenticationRequired>()(
   'AuthenticationRequired',
   ErrorFields
 ) {}
 
-export class AuthorizationFailure extends Schema.TaggedErrorClass<AuthorizationFailure>()(
+export class AuthorizationFailure extends Schema.TaggedError<AuthorizationFailure>()(
   'AuthorizationFailure',
   ErrorFields
 ) {}
 
-export class ResourceNotFound extends Schema.TaggedErrorClass<ResourceNotFound>()(
+export class ResourceNotFound extends Schema.TaggedError<ResourceNotFound>()(
   'ResourceNotFound',
   ErrorFields
 ) {}
 
-export class ValidationFailure extends Schema.TaggedErrorClass<ValidationFailure>()(
+export class ValidationFailure extends Schema.TaggedError<ValidationFailure>()(
   'ValidationFailure',
   ErrorFields
 ) {}
 
-export class ConflictFailure extends Schema.TaggedErrorClass<ConflictFailure>()(
+export class ConflictFailure extends Schema.TaggedError<ConflictFailure>()(
   'ConflictFailure',
   ErrorFields
 ) {}
 
-export class ExternalServiceUnavailable extends Schema.TaggedErrorClass<ExternalServiceUnavailable>()(
+export class ExternalServiceUnavailable extends Schema.TaggedError<ExternalServiceUnavailable>()(
   'ExternalServiceUnavailable',
   { ...ErrorFields, service: Schema.String, retryable: Schema.Boolean }
 ) {}
 
-export class ConfigurationFailure extends Schema.TaggedErrorClass<ConfigurationFailure>()(
+export class ConfigurationFailure extends Schema.TaggedError<ConfigurationFailure>()(
   'ConfigurationFailure',
   ErrorFields
 ) {}
@@ -1273,8 +1313,10 @@ export class EmailService extends Context.Service<EmailService>()('EmailService'
         'Territoire Vibrant'
       )
 
-      /** Transient transport failures only — never a rejected payload. */
-      const retryPolicy = Schedule.exponential('200 millis').pipe(Schedule.compose(Schedule.recurs(2)))
+/** Transient transport failures only — a rejected payload is never retried. */
+const retryPolicy = Schedule.exponential('200 millis').pipe(
+  Schedule.upTo({ duration: '5 seconds', times: 3 })
+)
 
       const send = (params: InstanceType<typeof EmailParams>, operation: string) =>
         Effect.tryPromise({
