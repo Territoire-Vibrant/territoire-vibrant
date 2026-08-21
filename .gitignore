@@ -37,6 +37,10 @@ yarn-error.log*
 .env
 .env*.local
 
+# migration snapshots and artifacts (contain production data)
+.migration-backup/
+.migration-artifacts/
+
 # vercel
 .vercel
 
