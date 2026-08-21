@@ -150,10 +150,25 @@ export default async function SearchPage({
   const activeLocale = resolveLocale(locale)
   const trimmedQuery = query.trim()
 
-  const [t, articles] = await Promise.all([
+  type SearchTranslation = {
+    locale: 'fr' | 'es' | 'en' | 'pt'
+    title: string
+    bodyMd: string
+    published: boolean
+  }
+  type SearchArticle = {
+    _id: string
+    legacyId?: string
+    status: string
+    createdAt: number
+    translations: SearchTranslation[]
+  }
+
+  const [t, fetchedArticles] = await Promise.all([
     getTranslations(),
-    trimmedQuery ? publicQuery(api.articles.search, { query: trimmedQuery, locale: activeLocale }) : Promise.resolve([]),
+    trimmedQuery ? publicQuery(api.articles.search, { query: trimmedQuery, locale: activeLocale }) : Promise.resolve([] as never[]),
   ])
+  const articles = fetchedArticles as unknown as SearchArticle[]
 
   let searchResults: SearchResultCard[] = []
 

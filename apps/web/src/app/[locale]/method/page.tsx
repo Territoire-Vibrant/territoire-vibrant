@@ -52,7 +52,14 @@ export default async function MethodPage({
   const { locale } = await params
   const activeLocale = resolveLocale(locale)
 
-  const article = await publicQuery(api.articles.getByAnyId, { id: METHOD_ARTICLE_ID })
+  const fetchedArticle = await publicQuery(api.articles.getByAnyId, { id: METHOD_ARTICLE_ID })
+  const article = fetchedArticle as unknown as {
+    _id: string
+    legacyId?: string
+    status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED'
+    createdAt: number
+    translations: Array<{ locale: 'fr' | 'es' | 'en' | 'pt'; title: string; bodyMd: string; published: boolean }>
+  } | null
 
   if (article?.status !== 'PUBLISHED') {
     const t = await getTranslations()

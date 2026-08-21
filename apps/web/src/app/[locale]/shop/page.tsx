@@ -37,7 +37,7 @@ export default async function ShopPage() {
           {/* Free e-book download - always first */}
           <EbookCard />
 
-          {products.map((product) => (
+          {products.map((product: { _id: string; legacyId?: string; name: string; description?: string; priceCents: number; currency: string; imageUrl?: string; type: 'PHYSICAL'|'DIGITAL'; partnerStoreUrl?: string }) => (
             <ProductCard
               key={product._id}
               product={{

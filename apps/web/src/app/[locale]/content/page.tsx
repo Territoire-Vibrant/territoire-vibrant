@@ -109,12 +109,29 @@ export default async function ContentPage({
   const categoryParam = Array.isArray(rawSearchParams.category) ? rawSearchParams.category[0] : rawSearchParams.category
   const activeCategory: ContentCategory = isContentCategory(categoryParam) ? categoryParam : 'publications'
 
-  const [t, tContent, tCaseStudies, articles] = await Promise.all([
+  type PublishedTranslation = {
+    locale: 'fr' | 'es' | 'en' | 'pt'
+    title: string
+    bodyMd: string
+    published: boolean
+  }
+  type PublishedArticle = {
+    _id: string
+    legacyId?: string
+    status: string
+    createdAt: number
+    translations: PublishedTranslation[]
+  }
+
+  const [t, tContent, tCaseStudies, fetchedArticles] = await Promise.all([
     getTranslations(),
     getTranslations('Content'),
     getTranslations('CaseStudies'),
-    activeCategory === 'publications' ? publicQuery(api.articles.listPublished, {}) : Promise.resolve([]),
+    activeCategory === 'publications'
+      ? publicQuery(api.articles.listPublished, {})
+      : Promise.resolve([] as never[]),
   ])
+  const articles = fetchedArticles as unknown as PublishedArticle[]
 
   const publishedArticles: PublishedArticleCard[] = articles.reduce<PublishedArticleCard[]>((cards, article) => {
     const publicId = article.legacyId ?? article._id

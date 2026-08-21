@@ -32,7 +32,7 @@ export default async function AdminShopPage() {
         <p className='text-muted-foreground'>{t('admin_shop_no_products')}</p>
       ) : (
         <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-          {products.map((product) => {
+          {products.map((product: { _id: string; legacyId?: string; name: string; description?: string; priceCents: number; currency: string; imageUrl?: string; type: 'PHYSICAL'|'DIGITAL'; isActive: boolean; partnerStoreUrl?: string }) => {
             const formattedPrice = CAD_FORMATTER.format(product.priceCents / 100)
 
             return (

@@ -54,11 +54,25 @@ export default async function PublicationArticlePage({
 }) {
   const { articleId, locale } = await params
   const activeLocale = resolveLocale(locale)
-  const [t, article] = await Promise.all([
+  type Translation = {
+    locale: 'fr' | 'es' | 'en' | 'pt'
+    title: string
+    bodyMd: string
+    published: boolean
+  }
+
+  const [t, fetched] = await Promise.all([
     getTranslations(),
     // getByAnyId also resolves pre-migration Postgres UUIDs, so old links keep working.
     publicQuery(api.articles.getByAnyId, { id: articleId }),
   ])
+  const article = fetched as unknown as {
+    _id: string
+    legacyId?: string
+    status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED'
+    createdAt: number
+    translations: Translation[]
+  } | null
 
   if (article?.status !== 'PUBLISHED') {
     notFound()

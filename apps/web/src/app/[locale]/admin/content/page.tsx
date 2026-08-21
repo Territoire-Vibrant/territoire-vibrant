@@ -60,13 +60,23 @@ export default async function AdminContentPage({
   const status = typeof rawStatus === 'string' ? (rawStatus as PublishStatus) : undefined
   const sort = typeof rawSort === 'string' ? rawSort : 'newest'
 
-  const [t, articles] = await Promise.all([getTranslations(), authedQuery(api.articles.listAll, {})])
+  const [t, fetchedArticles] = await Promise.all([getTranslations(), authedQuery(api.articles.listAll, {})])
   const tx = (key: string) => (t as unknown as (k: string) => string)(key)
+
+  type AdminArticle = {
+    _id: string
+    legacyId?: string
+    status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED'
+    createdAt: number
+    updatedAt: number
+    translations: Array<{ locale: 'fr' | 'es' | 'en' | 'pt'; title?: string; bodyMd?: string }>
+  }
+  const articles = fetchedArticles as unknown as AdminArticle[]
   const locale = typeof rawLocale === 'string' ? rawLocale : routeLocale
   const normalizedLocale = locale?.toLowerCase()
   const queryNormalized = query.toLocaleLowerCase()
   const filtered = articles
-    .filter((a) => {
+    .filter((a: AdminArticle) => {
       if (status && a.status !== status) {
         return false
       }
@@ -85,7 +95,7 @@ export default async function AdminContentPage({
         return content.toLocaleLowerCase().includes(queryNormalized)
       })
     })
-    .sort((a, b) => {
+    .sort((a: AdminArticle, b: AdminArticle) => {
       if (sort === 'newest') return b.createdAt - a.createdAt
       if (sort === 'oldest') return a.createdAt - b.createdAt
       return 0

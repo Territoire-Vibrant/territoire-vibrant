@@ -25,7 +25,7 @@ export default async function PublicationEditPage({
     ? {
         articleId: data._id,
         status: data.status,
-        translations: data.translations.map((tr) => ({
+        translations: data.translations.map((tr: { locale: 'fr' | 'es' | 'en' | 'pt'; title: string; bodyMd: string; published: boolean }) => ({
           locale: tr.locale,
           title: tr.title,
           bodyMd: tr.bodyMd,
