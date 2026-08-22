@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Territoire Vibrant",
+    "slug": "territoire-vibrant",
+    "version": "0.1.0",
+    "scheme": "territoirevibrant",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "plugins": ["expo-router", "expo-secure-store"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "convexUrl": ""
+    }
+  }
+}
