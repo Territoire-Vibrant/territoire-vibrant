@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import ReactMarkdown, { type Components } from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeRaw from 'rehype-raw'
-import rehypeSanitize from 'rehype-sanitize'
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
 import remarkGfm from 'remark-gfm'
 
 import 'highlight.js/styles/github.css'
@@ -13,6 +13,21 @@ import { UnoptimizedImage } from './ui/unoptimized-image'
 
 const HIGHLIGHT_START = '‹‹HL››'
 const HIGHLIGHT_END = '‹‹/HL››'
+
+/**
+ * The default sanitize schema allows 53 tags but `mark` is not one of them, so
+ * the `<mark>` that rehypeRaw builds from the highlight markers was stripped
+ * right back out and search hits rendered as plain text in the body.
+ *
+ * Only `mark` is added, and it carries no attributes, so nothing about the
+ * surrounding protection changes — user-authored markdown still cannot smuggle
+ * a script or an event handler through.
+ */
+const highlightSchema = {
+  ...defaultSchema,
+  tagNames: [...(defaultSchema.tagNames ?? []), 'mark'],
+}
+
 
 type MarkdownPreviewProps = {
   markdown: string
@@ -157,7 +172,7 @@ export const MarkdownPreview = ({
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeHighlight]}
+        rehypePlugins={[rehypeRaw, [rehypeSanitize, highlightSchema], rehypeHighlight]}
         components={components}
       >
         {content}
