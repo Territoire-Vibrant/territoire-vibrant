@@ -7,9 +7,10 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "bun --filter '*' dev",
     "dev:web": "bun --filter web dev",
     "dev:mobile": "bun --filter mobile dev",
-    "dev:backend": "bun --filter @tv/backend convex:dev",
+    "dev:backend": "bun --filter @tv/backend dev",
     "build:web": "bun --filter web build",
     "check": "biome check .",
     "check:unsafe": "biome check --write --unsafe .",

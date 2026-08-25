@@ -9,6 +9,7 @@
     "./server": "./convex/_generated/server.js"
   },
   "scripts": {
+    "dev": "bunx convex dev",
     "convex:dev": "bunx convex dev",
     "convex:dev:once": "bunx convex dev --once",
     "convex:deploy:prod": "bunx convex deploy",
