@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@tv/domain": "*",
-    "convex": "1.44.0",
+    "convex": "1.45.0",
     "convex-helpers": "^0.1.123",
     "effect": "4.0.0-beta.107",
     "mailersend": "^3.1.0"

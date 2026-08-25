@@ -1,12 +1,30 @@
 import { UserButton } from '@clerk/nextjs'
-import { getTranslations } from 'next-intl/server'
+import { auth } from '@clerk/nextjs/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import type { ReactNode } from 'react'
 
 import { Toaster } from '~/components/ui/sonner'
 
-import { Link } from '~/i18n/navigation'
+import { Link, redirect } from '~/i18n/navigation'
+import { isAdminFromSessionClaims } from '~/lib/utils'
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
+  /**
+   * Resource-based auth check, as Clerk recommends over relying on middleware
+   * alone: path matching can diverge from how Next.js actually routes a
+   * request, leaving a protected page reachable. The proxy still redirects
+   * unauthenticated visitors so they land on sign-in rather than a bare 404,
+   * but this layout is what actually guards every page beneath it.
+   *
+   * The Convex side is independent of both: `requireAdmin` re-reads `isAdmin`
+   * from the user's row on every call, so a forged session claim buys nothing.
+   */
+  const [{ userId, sessionClaims }, locale] = await Promise.all([auth(), getLocale()])
+
+  if (!userId || !isAdminFromSessionClaims(sessionClaims)) {
+    redirect({ href: '/', locale })
+  }
+
   const t = await getTranslations()
 
   return (

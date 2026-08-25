@@ -1,59 +1,44 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { clerkMiddleware } from '@clerk/nextjs/server'
 import createMiddleware from 'next-intl/middleware'
 import { type NextRequest, NextResponse } from 'next/server'
 
 import { routing } from './i18n/routing'
-import { isAdminFromSessionClaims } from './lib/utils'
 
 const intlMiddleware = createMiddleware(routing)
 
-// Route matchers for access control (support locale-prefixed paths and non-prefixed fallbacks).
-const adminPatterns = ['/admin(.*)', ...routing.locales.map((l) => `/${l}/admin(.*)`)]
-const adminLoginPatterns = ['/admin/login(.*)', ...routing.locales.map((l) => `/${l}/admin/login(.*)`)]
-const isAdminRoute = createRouteMatcher(adminPatterns)
-const isPublicAdminRoute = createRouteMatcher(adminLoginPatterns)
+const ADMIN_SEGMENT = '/admin'
 
-/** `/admin` or `/{locale}/admin` only - not `/admin/content`, `/admin/shop`, etc. */
-function isAdminIndexPath(pathname: string) {
-  const p = pathname.replace(/\/$/, '') || '/'
-  if (p === '/admin') {
-    return true
+/** Strips the locale prefix so path checks work with or without one. */
+const withoutLocale = (pathname: string) => {
+  const trimmed = pathname.replace(/\/$/, '') || '/'
+  for (const locale of routing.locales) {
+    if (trimmed === `/${locale}`) return '/'
+    if (trimmed.startsWith(`/${locale}/`)) return trimmed.slice(locale.length + 1)
   }
-  return routing.locales.some((loc) => p === `/${loc}/admin`)
+  return trimmed
 }
 
-const proxy = clerkMiddleware(async (auth, req: NextRequest) => {
+/**
+ * `/admin` or `/{locale}/admin` exactly — not `/admin/content`, `/admin/shop`.
+ * Redirecting here in the proxy avoids an RSC `redirect()`, which throws
+ * NEXT_REDIRECT and flashes the dev error overlay.
+ */
+const isAdminIndexPath = (pathname: string) => withoutLocale(pathname) === ADMIN_SEGMENT
+
+const proxy = clerkMiddleware(async (_auth, req: NextRequest) => {
   const pathname = req.nextUrl.pathname
 
-  if (isAdminRoute(req) && !isPublicAdminRoute(req)) {
-    const { userId, redirectToSignIn, sessionClaims } = await auth()
-    if (!userId) {
-      return redirectToSignIn({ returnBackUrl: req.url })
-    }
-
-    const isAdmin = isAdminFromSessionClaims(sessionClaims)
-
-    // Redirect non-admin authenticated users out of /admin
-    if (!isAdmin) {
-      const url = new URL('/', req.url)
-      return NextResponse.redirect(url)
-    }
-
-    // Avoid RSC redirect() on /admin (throws NEXT_REDIRECT → dev error overlay flash)
-    if (isAdminIndexPath(pathname)) {
-      const url = req.nextUrl.clone()
-      url.pathname = `${pathname.replace(/\/$/, '')}/content`
-      return NextResponse.redirect(url)
-    }
+  if (isAdminIndexPath(pathname)) {
+    const url = req.nextUrl.clone()
+    url.pathname = `${pathname.replace(/\/$/, '')}/content`
+    return NextResponse.redirect(url)
   }
 
-  // Skip next-intl for API and tRPC routes.
+  // API routes opt out of next-intl but still pass through Clerk.
   if (pathname.startsWith('/api')) {
-    // Ensure Clerk still marks the request as passing through proxy
     return NextResponse.next()
   }
 
-  // Apply internationalization for all other routes.
   return intlMiddleware(req)
 })
 

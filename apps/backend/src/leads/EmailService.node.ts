@@ -1,5 +1,7 @@
 'use node'
 
+import { Buffer } from 'node:buffer'
+
 import { Effect, Layer, Schedule } from 'effect'
 
 import type { ContactSubject } from '@tv/domain/contact'
