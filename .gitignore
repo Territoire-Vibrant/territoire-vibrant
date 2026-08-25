@@ -11,4 +11,3 @@ build/
 .migration-artifacts/
 .convex/
 generated/
-**/convex/_generated/
